@@ -69,8 +69,8 @@ function addAliens() {
 // func2Call()
 /*******************************************************/
 
-function func2Call(_ball_1, _ssss) {
-_ssss.remove();
+function func2Call(_ball_1, _alien) {
+_alien.remove();
 
 }
 

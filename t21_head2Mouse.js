@@ -8,7 +8,13 @@
 // setup()
 /*******************************************************/
 function setup() {
+
 	console.log("setup: ");
+	cnv = new Canvas(windowWidth, windowHeight);
+	
+	testSprite = new Sprite(200, 0, 50, "d");
+	testSprite.color = 'purple';
+	testSprite.rotationSpeed = 2;
 
 }
 	
@@ -16,7 +22,9 @@ function setup() {
 // draw()
 /*******************************************************/
 function draw() {
-	
+	background('pink');
+
+	testSprite.moveTowards(mouse.x, mouse.y, 50);
 }
 
 /*******************************************************/
