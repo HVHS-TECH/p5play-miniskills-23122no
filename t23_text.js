@@ -1,34 +1,32 @@
 /*******************************************************/
-// P5.play: t21_head2Mouse
-// Move sprite towards the mouse' position
-// Written by ???
+// P5.play: t23_text.js
+// Add text
+// Written by Nina
 /*******************************************************/
 	
 /*******************************************************/
 // setup()
 /*******************************************************/
+var timeRunning = 0;
 function setup() {
-
-	console.log("setup: ");
+    console.log("setup: ");
+    console.log(timeRunning);
 	cnv = new Canvas(windowWidth, windowHeight);
-	
-	testSprite = new Sprite(windowWidth/2, windowHeight/2, 50, 50, "d");
-	testSprite.color = 'purple';
-	testSprite.rotationSpeed = 2;
-
 }
 	
 /*******************************************************/
 // draw()
 /*******************************************************/
 function draw() {
-	background('pink');
-
-	testSprite.moveTowards(mouseX, mouseY);
-
-	if (mouse.presses()) {
-		testSprite.moveTo(windowWidth/2, windowHeight/2, 1000);
-	}
+    timeRunning = millis();
+    timeRunning = timeRunning/1000;
+    timeRunning = Math.floor(timeRunning);
+    console.log(timeRunning);
+    background('pink');
+    textSize(64);
+    fill("purple");
+    textFont("Courier New");
+    text(timeRunning, windowWidth/2, windowHeight/2);
 }
 
 /*******************************************************/
