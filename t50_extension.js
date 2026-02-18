@@ -22,7 +22,7 @@ function preload() {
 /*******************************************************/
 function setup() {
 	console.log("setup: ");
-	new Canvas(200, 200, "pixelated x4");
+	new Canvas(200, 200,  "pixelated x4");
 	world.gravity.y = 5;
 
 	ground = new Group();
@@ -51,18 +51,32 @@ function setup() {
 
 
 	new Tiles(
-		[
+		[	
+			".............",
+			"gg...........",
+			"ddgg.........",
+			".............",
+			"......gg.....",
+			".............",
+			"..........gg.",
+			".............",
+			".............",
 			"ggg..gggggggg",
 			"dddttdddddddd",
 			"dddwwdddddddd"
 		],
-		10, height-30,
+		5, 10,
 		16, 16
 	);
 
-	player = new Sprite(10, 10, 10);
+	player = new Sprite(10, 100, 10);
 	player.friction = 0;
 	player.bounciness = 0;
+	player.color = "green";
+
+	coin = new Sprite(10,10,10);
+	coin.collider = "static";
+	coin.color="yellow";
 
 }
 	
