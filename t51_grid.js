@@ -16,11 +16,11 @@ function setup() {
 	console.log("setup: ");
 	cnv = new Canvas(windowWidth, windowHeight);
 
-    for (i = 0; i < 10; i++) {
+    for (i = 1; i < 11; i++) {
         console.log("begin loop");
             for (n = 0; n < 10; n++) {
                 console.log("run loop");
-                box = new Sprite(i*(spriteSize+25), spriteY, spriteSize, spriteSize, "k");
+                box = new Sprite(i*(spriteSize + 25), spriteY, spriteSize, spriteSize, "k");
                 box.color = spriteColor;
                 spriteY = spriteY + spriteSize + 25;
             }
@@ -28,8 +28,14 @@ function setup() {
         spriteX = spriteX + spriteSize + 25;
         spriteY = spriteSize/2 + 25;
         console.log("end loop");
-        console.log(spriteX);
     }
+
+    /*************
+    for (i = 1; i < 11; i++) {
+        box = new Sprite(width/2, i*(spriteSize + 25), i*(spriteSize + 25), spriteSize, "k");
+    }
+    *************/
+
 }
 	
 /*******************************************************/

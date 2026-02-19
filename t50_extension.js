@@ -6,6 +6,7 @@
 
 let worldTiles;
 let ground, water, dirt;
+let score = 0;
 
 
 /*******************************************************/
@@ -22,7 +23,7 @@ function preload() {
 /*******************************************************/
 function setup() {
 	console.log("setup: ");
-	new Canvas(200, 200,  "pixelated x4");
+	new Canvas(300, 300, "pixelated x4");
 	world.gravity.y = 5;
 
 	ground = new Group();
@@ -52,18 +53,19 @@ function setup() {
 
 	new Tiles(
 		[	
-			".............",
-			"gg...........",
-			"ddgg.........",
-			".............",
-			"......gg.....",
-			".............",
-			"..........gg.",
-			".............",
-			".............",
-			"ggg..gggggggg",
-			"dddttdddddddd",
-			"dddwwdddddddd"
+			"..................................",
+			"gg................................",
+			"ddgg................gggg..........",
+			".............................gg...",
+			"......gg..........................",
+			"...........................gg.....",
+			"..........gg......................",
+			".........................gg.......",
+			"..................................",
+			"ggg..ggggggggggggggggggggggggggggg",
+			"dddttddddddddddddddddddddddddddddd",
+			"dddwwddddddddddddddddddddddddddddd",
+			"dddwwddddddddddddddddddddddddddddd"
 		],
 		5, 10,
 		16, 16
@@ -74,9 +76,24 @@ function setup() {
 	player.bounciness = 0;
 	player.color = "green";
 
-	coin = new Sprite(10,10,10);
+	coinGroup = new Group;
+
+	coin = new Sprite(10, 10, 10);
 	coin.collider = "static";
 	coin.color="yellow";
+
+	coinGroup.add(coin);
+
+}
+
+/*******************************************************/
+// colectCoin()
+/*******************************************************/
+
+function collectCoin(_player, _coin) {
+	_coin.remove();
+	score++;
+	console.log(score);
 
 }
 	
@@ -84,19 +101,16 @@ function setup() {
 // draw()
 /*******************************************************/
 function draw() {
-	background("lightblue")
+	background("lightblue");
 
 	if (kb.pressing('left')) {
-
 		player.velocity.x = -2;
 
 	} else if (kb.pressing ('right')) {
-		
 		player.velocity.x = 2;
 	};
 
 	if (kb.released('left')) {
-
 		player.velocity.x = 0;
 	
 	} else if (kb.released('right')) {
@@ -104,12 +118,24 @@ function draw() {
 	}
 
 	if (kb.presses('up') && player.colliding(ground)) {
-		player.velocity.y = 15; 
+		player.velocity.y = 14; 
 	} 
 
 	if (kb.presses('q')) {
 		player.moveTo(10, 10, 1000);
 	}
+
+	player.collides(coinGroup, collectCoin);
+
+	if (player.y > 600) {
+		console.log("fallen");
+		player.y = 100;
+		player.x = 10;
+	}
+
+	camera.x = player.x;
+	camera.y = player.y;
+
 }
 
 /*******************************************************/
